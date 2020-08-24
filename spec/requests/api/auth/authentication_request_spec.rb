@@ -87,7 +87,7 @@ RSpec.describe 'Authentication', type: :request do
       # rubocop: disable Layout/LineLength
       it 'returns failure message' do
         expect(json['message'])
-          .to match("Validation failed: Password can't be blank, Password is too short (minimum is 6 characters), Full name can't be blank, Username can't be blank, Email can't be blank")
+          .to match("Validation failed: Password can't be blank, Password is too short (minimum is 6 characters), Username can't be blank, Email can't be blank")
       end
     end
     # rubocop: enable Layout/LineLength

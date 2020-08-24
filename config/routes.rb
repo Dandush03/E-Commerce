@@ -4,10 +4,6 @@ Rails.application.routes.draw do
   get '/api', to: 'api#index'
 
   namespace :api, defaults: { format: :json } do
-    resources :tasks, except: %i[destroy show]
-    get '/searcher', to: 'tasks#searcher'
-    get '/searcher/by_category_date', to: 'tasks#search_by_category'
-
     namespace :auth do
       get '/', to: 'authentication#authorize'
       post '/login', to: 'authentication#authenticate'
