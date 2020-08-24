@@ -28,5 +28,15 @@
 !/storage/.keep
 .byebug_history
 
+# Ignore nodes
+/node_modules
+/node_modules/*
+
+# Ignore VSCode Config
+/.vscode
+/.vscode/*
+
 # Ignore master key for decrypting credentials and more.
 #/config/master.key
+
+/config/master.key

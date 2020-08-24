@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_215500) do
+ActiveRecord::Schema.define(version: 2020_08_07_232006) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "category"
@@ -26,22 +29,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_215500) do
     t.integer "seconds"
     t.integer "minutes"
     t.integer "hours"
-    t.integer "category_id"
-    t.integer "user_id"
+    t.bigint "category_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
-  end
-
-  create_table "tokens", force: :cascade do |t|
-    t.string "token"
-    t.string "request_ip"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["token"], name: "index_tokens_on_token", unique: true
-    t.index ["user_id"], name: "index_tokens_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,5 +48,4 @@ ActiveRecord::Schema.define(version: 2020_08_15_215500) do
 
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "users"
-  add_foreign_key "tokens", "users"
 end

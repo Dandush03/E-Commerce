@@ -24,11 +24,12 @@ gem('rack-cors')
 # Add JSON Token Auth
 gem('jwt')
 
+# Use PostGress as Database for Active Records
+gem('pg')
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem('byebug', platforms: %i[mri mingw x64_mingw])
-  # Use sqlite3 as the database for Active Record
-  gem('sqlite3')
   # Test Rails
   gem('rspec-rails')
 end
@@ -59,7 +60,6 @@ end
 
 group :production do
   # Add a Postgrade server
-  gem('pg')
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
