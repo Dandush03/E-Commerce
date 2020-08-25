@@ -2,7 +2,7 @@ module Api
   module Auth
     # Authentication Controller
     class AuthenticationController < ApplicationController
-      skip_before_action :authorize_request, only: %i[authenticate create]
+      skip_before_action :authorize_request!, only: %i[authenticate create]
       def create
         user = User.create!(user_params)
         auth_token = AuthenticateUser.new(user.email, user.password, request.ip).call

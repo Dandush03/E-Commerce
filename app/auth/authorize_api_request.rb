@@ -36,7 +36,7 @@ class AuthorizeApiRequest
   end
 
   def token_valid?
-    current_user.tokens.order('created_at desc').first.token == decoded_token
+    current_user.tokens.last.token == decoded_token
   end
 
   def auth_token

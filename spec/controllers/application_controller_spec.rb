@@ -14,7 +14,7 @@ RSpec.describe ApplicationController, type: :controller do
 
       # private method authorize_request returns current user
       it 'sets the current user' do
-        expect(subject.instance_eval { authorize_request }).to eq(user)
+        expect(subject.instance_eval { authorize_request! }).to eq(user)
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       it 'raises MissingToken error' do
-        expect { subject.instance_eval { authorize_request } }
+        expect { subject.instance_eval { authorize_request! } }
           .to raise_error(ExceptionHandler::MissingToken, /Missing token/)
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       it 'raises InvalidIp error' do
-        expect { subject.instance_eval { authorize_request } }
+        expect { subject.instance_eval { authorize_request! } }
           .to raise_error(ExceptionHandler::InvalidIp, /Invalid token/)
       end
     end
