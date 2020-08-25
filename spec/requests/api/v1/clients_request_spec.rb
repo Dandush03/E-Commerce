@@ -4,7 +4,6 @@ RSpec.describe 'Api::V1::Clients', type: :request do
   let!(:user) { create(:user) }
   let(:headers) { valid_headers }
   let(:invalid_headers) { valid_headers.except('Authorization') }
-  let(:invalid_headers) { valid_headers.except('Authorization') }
 
   describe 'POST #create' do
     context 'with valid credentials' do
@@ -40,7 +39,23 @@ RSpec.describe 'Api::V1::Clients', type: :request do
       end
 
       it 'returns http invalid user Msg' do
-        expect(json['message']).to match(/Your user cannot be a client/)
+        expect(json['message']).to match(/Your user cannot create a client/)
+      end
+
+      it 'returns http invalid credential Msg' do
+        expect(response).to have_http_status(422)
+      end
+    end
+
+    context 'with is already a client' do
+      let(:user) { create(:user, is_client: true) }
+      let(:client) { build(:client) }
+      before do
+        post '/api/v1/clients', params: client.to_json, headers: headers
+      end
+
+      it 'returns http invalid user Msg' do
+        expect(json['message']).to match(/Your user cannot create a client/)
       end
 
       it 'returns http invalid credential Msg' do

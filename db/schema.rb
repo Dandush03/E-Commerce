@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_181324) do
     t.string "privilage", default: "client"
     t.boolean "validated", default: false
     t.boolean "status", default: true
+    t.boolean "is_client", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

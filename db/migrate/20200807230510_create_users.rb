@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.boolean :validated, default: 'false'
 
       t.boolean :status, default: true
+      t.boolean :is_client, default: false
 
       t.timestamps
     end
